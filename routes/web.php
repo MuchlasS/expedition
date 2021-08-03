@@ -37,4 +37,10 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('/delivery-type/{id}/edit', 'App\Http\Controllers\DeliveryTypeController@edit');
     Route::post('/delivery-type/{id}/edit', 'App\Http\Controllers\DeliveryTypeController@update');
     Route::get('/delivery-type/{id}/delete', 'App\Http\Controllers\DeliveryTypeController@delete');
+    // DELIVERY TYPES
+    Route::get('/delivery-fleet', 'App\Http\Controllers\DeliveryFleetController@index');
+    Route::post('/delivery-fleet', 'App\Http\Controllers\DeliveryFleetController@create');
+    Route::get('/delivery-fleet/{id}/edit', 'App\Http\Controllers\DeliveryFleetController@edit');
+    Route::post('/delivery-fleet/{id}/edit', 'App\Http\Controllers\DeliveryFleetController@update');
+    Route::get('/delivery-fleet/{id}/delete', 'App\Http\Controllers\DeliveryFleetController@delete');
 });

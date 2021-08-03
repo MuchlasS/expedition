@@ -45,7 +45,7 @@
         </div>
     </div>
 </div>
-<!-- DATA ROLES -->
+<!-- DATA DELIVERY TYPE -->
 <table class="table table-borderless">
     <thead>
         <tr>

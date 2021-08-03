@@ -3,12 +3,12 @@
 @section('body')
 
 <!-- ALERT SUCCESS ADD ROLES -->
-<!-- @if(session('success'))
+@if(session('success'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
   {{ session('success') }}
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
-@endif -->
+@endif
 <!-- ADD ROLES MODAL -->
 <div class="row">
     <div class="col-6">
@@ -16,18 +16,18 @@
     </div>
     <div class="col-6">
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rolesModel">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deliveryFleets">
             Add Data
         </button>
         <!-- Modal -->
-        <div class="modal fade" id="rolesModel" tabindex="-1" aria-labelledby="rolesModelLabel" aria-hidden="true">
+        <div class="modal fade" id="deliveryFleets" tabindex="-1" aria-labelledby="deliveryFleetsLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="rolesModelLabel">Add Data Roles</h5>
+                    <h5 class="modal-title" id="deliveryFleetsLabel">Add Data Roles</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="/roles" method="POST">
+                <form action="/delivery-fleet" method="POST">
                 {{ csrf_field() }}
                     <div class="modal-body">
                         <div class="mb-3 form-group">
@@ -36,10 +36,9 @@
                         </div>
                         <div class="mb-3 form-group">
                             <label for="fleetsType" class="form-label">Delivery Type</label>
-                            <select class="form-select" aria-label="Delivery Types">
+                            <select name="delivery_type_id" class="form-select" aria-label="Delivery Types">
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
-                                <option value="3">Three</option>
                             </select>
                         </div>
                     </div>
@@ -53,27 +52,29 @@
         </div>
     </div>
 </div>
-<!-- DATA ROLES -->
+<!-- DATA FLEETS -->
 <table class="table table-borderless">
     <thead>
         <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
+            <th scope="col">Type ID</th>
             <th scope="col">Action</th>
         </tr>
     </thead>
-    <!-- <tbody>
-        @foreach($rolesData as $role)
+    <tbody>
+        @foreach($fleetsData as $fleet)
         <tr>
             <th scope="row">{{ $loop->iteration }}</th>
-            <td>{{ $role->name }}</td>
+            <td>{{ $fleet->name }}</td>
+            <td>{{ $fleet->delivery_type_id }}</td>
             <td>
-                <a class="badge bg-warning btn" href="/roles/{{ $role->id }}/edit">Edit</a>
-                <!-- <a class="badge bg-danger btn" href="/roles/{{ $role->id }}/delete">Delete</a> -->
+                <a class="badge bg-warning btn" href="/delivery-fleet/{{ $fleet->id }}/edit">Edit</a>
+                <a class="badge bg-danger btn" href="/delivery-fleet/{{ $fleet->id }}/delete">Delete</a>
             </td>
         </tr>
         @endforeach
-    </tbody> -->
+    </tbody>
 </table>
 
 @endsection
