@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('hp');
             $table->text('address');
             $table->string('gender', 1);
+            $table->integer('roles_id')->unsigned();
             $table->timestamps();
         });
     }

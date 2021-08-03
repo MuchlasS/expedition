@@ -25,6 +25,10 @@ Route::post('/register', 'App\Http\Controllers\AuthController@registerPost');
 Route::group(['middleware' => 'auth'], function (){
     // AUTH
     Route::get('/logout', 'App\Http\Controllers\AuthController@logout');
+    Route::get('/user', 'App\Http\Controllers\AuthController@index');
+    Route::get('/user/{id}/edit', 'App\Http\Controllers\AuthController@edit');
+    Route::post('/user/{id}/edit', 'App\Http\Controllers\AuthController@update');
+    Route::get('/user/{id}/delete', 'App\Http\Controllers\AuthController@delete');
     // ROLES
     Route::get('/roles', 'App\Http\Controllers\RoleController@index');
     Route::post('/roles', 'App\Http\Controllers\RoleController@create');

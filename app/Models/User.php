@@ -22,7 +22,8 @@ class User extends Authenticatable
         'password',
         'hp',
         'address',
-        'gender'
+        'gender',
+        'roles_id'
     ];
 
     /**
@@ -43,4 +44,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function roles(){
+        return $this->belongsTo(Role::class, 'roles_id');
+    }
+
+    public function officeInfo(){
+        return $this->belongsTo(OfficeUserInfo::class, 'id');
+    }
 }
