@@ -31,4 +31,10 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('/roles/{id}/edit', 'App\Http\Controllers\RoleController@edit');
     Route::post('/roles/{id}/edit', 'App\Http\Controllers\RoleController@update');
     Route::get('/roles/{id}/delete', 'App\Http\Controllers\RoleController@delete');
+    // DELIVERY TYPES
+    Route::get('/delivery-type', 'App\Http\Controllers\DeliveryTypeController@index');
+    Route::post('/delivery-type', 'App\Http\Controllers\DeliveryTypeController@create');
+    Route::get('/delivery-type/{id}/edit', 'App\Http\Controllers\DeliveryTypeController@edit');
+    Route::post('/delivery-type/{id}/edit', 'App\Http\Controllers\DeliveryTypeController@update');
+    Route::get('/delivery-type/{id}/delete', 'App\Http\Controllers\DeliveryTypeController@delete');
 });

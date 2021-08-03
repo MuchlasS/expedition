@@ -23,6 +23,12 @@
                 <a class="nav-link" href="/roles">Roles</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="/delivery-type">Delivery Type</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/delivery-fleet">Delivery Fleet</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="/login">Login</a>
             </li>
             <li class="nav-item">
