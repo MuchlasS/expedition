@@ -17,6 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/coba', 'App\Http\Controllers\DeliveryFleetController@coba');
+Route::get('/coba/{id}', 'App\Http\Controllers\DeliveryFleetController@cobaById');
+
 Route::get('/login', 'App\Http\Controllers\AuthController@login')->name('login');
 Route::post('/login', 'App\Http\Controllers\AuthController@loginPost');
 Route::get('/register', 'App\Http\Controllers\AuthController@register');

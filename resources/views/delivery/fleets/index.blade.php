@@ -37,8 +37,9 @@
                         <div class="mb-3 form-group">
                             <label for="fleetsType" class="form-label">Delivery Type</label>
                             <select name="delivery_type_id" class="form-select" aria-label="Delivery Types">
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
+                                @foreach($fleetsData as $fleet)
+                                <option value="{{$fleet->deliveryType->id}}">{{$fleet->deliveryType->name}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -58,7 +59,7 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
-            <th scope="col">Type ID</th>
+            <th scope="col">Type</th>
             <th scope="col">Action</th>
         </tr>
     </thead>
@@ -67,7 +68,7 @@
         <tr>
             <th scope="row">{{ $loop->iteration }}</th>
             <td>{{ $fleet->name }}</td>
-            <td>{{ $fleet->delivery_type_id }}</td>
+            <td>{{ $fleet->deliveryType->name }}</td>
             <td>
                 <a class="badge bg-warning btn" href="/delivery-fleet/{{ $fleet->id }}/edit">Edit</a>
                 <a class="badge bg-danger btn" href="/delivery-fleet/{{ $fleet->id }}/delete">Delete</a>

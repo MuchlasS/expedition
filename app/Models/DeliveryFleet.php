@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\DeliveryType as Type;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,4 +14,8 @@ class DeliveryFleet extends Model
         'delivery_type_id'
     ];
     use HasFactory;
+
+    public function deliveryType(){
+        return $this->belongsTo(Type::class, 'delivery_type_id');
+    }
 }
