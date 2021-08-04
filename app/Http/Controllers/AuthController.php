@@ -4,11 +4,61 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Models\User;
+use App\Models\OfficeUserInfo as Office;
 use App\Models\OfficeUserInfo;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
+    public function index(){
+        $userData = User::with('officeInfo')->get();
+        return view('auth.index', ['userData' => $userData]);
+    }
+
+    public function edit($id){
+        $userData = User::with('officeInfo')->where('id', $id)->get();
+        return view('auth.edit', ['editData' => $userData[0]]);
+    }
+
+    public function update(Request $request, $id){
+        $userData = User::with('officeInfo')->where('id', $id)->get();
+        $user = $userData[0];
+        
+        $officeData = Office::findOrFail($user->officeInfo->id);
+        
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'hp' => $request->hp,
+            'address' => $request->address,
+            'gender' => $request->gender,
+            'roles_id' => $user->roles_id
+        ]);
+
+        $officeData->update([
+            'office_name' => $request->office_name,
+            'office_telephone' => $request->office_telephone,
+            'office_address' => $request->office_address
+        ]);
+
+        return redirect('/user')->with('success', 'User '.$user->name.' Updated');
+    }
+
+    public function delete($id){
+        $userData = User::with('officeInfo')->where('id', $id)->get();
+        $user = $userData[0];
+        $name = $user->name;
+        
+        $officeData = Office::findOrFail($user->officeInfo->id);
+
+        $user = User::findOrFail($id);
+
+        $user->delete($user);
+        $officeData->delete($officeData);
+
+        return redirect('/user')->with('success', 'User '.$name.' Deleted');
+    }
+    
     public function login(){
         return view('auth.login');
     }
@@ -26,27 +76,45 @@ class AuthController extends Controller
     }
 
     public function registerPost(Request $request){
+        $roles = 1;
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'hp' => $request->hp,
             'address' => $request->address,
-            'gender' => $request->gender
+            'gender' => $request->gender,
+            'roles_id' => $roles
         ]);
 
-        $officeUserInfo = OfficeUserInfo::create([
-            'office_name' => $request->office_name,
-            'office_email' => $request->office_email,
-            'office_address' => $request->office_address,
-            'office_telephone' => $request->office_telephone,
-            'user_id' => $user->id
-        ]);
+        if($user->id){
+            $officeUserInfo = OfficeUserInfo::create([
+                'office_name' => $request->office_name,
+                'office_email' => $request->office_email,
+                'office_address' => $request->office_address,
+                'office_telephone' => $request->office_telephone,
+                'user_id' => $user->id
+            ]);
+        }
+
         return redirect('/login');
     }
 
     public function logout(){
         Auth::logout();
         return redirect('/login');
+    }
+
+    public function changePassword($id){
+        $user = User::findOrFail($id);
+        return view('auth.changePassword', ['editData' => $user]);
+    }
+
+    public function changePasswordPost(Request $request, $id){
+        $user = User::findOrFail($id);
+        $user->update([
+            'password' => bcrypt($request->password)
+        ]);
+        return redirect('/user')->with('success', 'User '.$user->name.' Password Updated');
     }
 }
