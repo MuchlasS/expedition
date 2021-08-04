@@ -47,6 +47,7 @@
             <td>{{ $user->roles->name }}</td>
             <td>
                 <a class="badge bg-warning btn" href="/user/{{ $user->id }}/edit">Edit</a>
+                <a class="badge bg-warning btn" href="/change-password/{{ $user->id }}">Edit Password</a>
                 <a class="badge bg-danger btn" href="/user/{{ $user->id }}/delete">Delete</a>
             </td>
         </tr>

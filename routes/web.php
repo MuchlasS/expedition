@@ -25,6 +25,9 @@ Route::post('/register', 'App\Http\Controllers\AuthController@registerPost');
 Route::group(['middleware' => 'auth'], function (){
     // AUTH
     Route::get('/logout', 'App\Http\Controllers\AuthController@logout');
+    Route::get('/change-password/{id}', 'App\Http\Controllers\AuthController@changePassword');
+    Route::post('/change-password/{id}', 'App\Http\Controllers\AuthController@changePasswordPost');
+    // USERS
     Route::get('/user', 'App\Http\Controllers\AuthController@index');
     Route::get('/user/{id}/edit', 'App\Http\Controllers\AuthController@edit');
     Route::post('/user/{id}/edit', 'App\Http\Controllers\AuthController@update');

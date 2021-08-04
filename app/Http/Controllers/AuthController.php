@@ -104,4 +104,17 @@ class AuthController extends Controller
         Auth::logout();
         return redirect('/login');
     }
+
+    public function changePassword($id){
+        $user = User::findOrFail($id);
+        return view('auth.changePassword', ['editData' => $user]);
+    }
+
+    public function changePasswordPost(Request $request, $id){
+        $user = User::findOrFail($id);
+        $user->update([
+            'password' => bcrypt($request->password)
+        ]);
+        return redirect('/user')->with('success', 'User '.$user->name.' Password Updated');
+    }
 }
