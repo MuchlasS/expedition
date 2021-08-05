@@ -26,6 +26,9 @@
                 <a class="nav-link" href="/roles">Roles</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="/area">Area</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="/delivery-type">Delivery Type</a>
             </li>
             <li class="nav-item">
