@@ -35,9 +35,7 @@
                 <a class="nav-link" href="/login">Login</a>
             </li>
             <li class="nav-item">
-                <form action="/logout" method="get">
-                    <button class="btn nav-link" type="submit">Logout</button>
-                </form>
+                <a class="nav-link" href="/logout">Logout</a>
             </li>
         </ul>
         <form class="d-flex">
