@@ -29,7 +29,7 @@ class RoleController extends Controller
         $role->update([
             'name' => $request->role_name
         ]);
-        return redirect('/roles')->with('success', 'User '.$role->name.' updated');
+        return redirect('/roles')->with('success', 'Role '.$role->name.' updated');
     }
 
     public function delete($id){
@@ -37,6 +37,6 @@ class RoleController extends Controller
         $name = $role->name;
 
         $role->delete($role);
-        return redirect('/roles')->with('success', 'User '.$name.' deleted');
+        return redirect('/roles')->with('success', 'Role '.$name.' deleted');
     }
 }
