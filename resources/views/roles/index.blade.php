@@ -6,7 +6,9 @@
 @if(session('success'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
   {{ session('success') }}
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
 </div>
 @endif
 <!-- ADD ROLES MODAL -->
@@ -16,7 +18,7 @@
     </div>
     <div class="col-12">
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#rolesModel">
+        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#rolesModel">
             Add Data
         </button>
         <!-- Modal -->
@@ -25,7 +27,9 @@
                 <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="rolesModelLabel">Add Data Roles</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+              </button>
                 </div>
                 <form action="/roles" method="POST">
                 {{ csrf_field() }}

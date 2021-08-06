@@ -17,8 +17,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/roles', 'App\Http\Controllers\RoleController@index');
-Route::post('/roles', 'App\Http\Controllers\RoleController@create');
-Route::get('/roles/{id}/edit', 'App\Http\Controllers\RoleController@edit');
-Route::post('/roles/{id}/edit', 'App\Http\Controllers\RoleController@update');
-Route::get('/roles/{id}/delete', 'App\Http\Controllers\RoleController@delete');
+Route::get('/login', 'App\Http\Controllers\AuthController@login')->name('login');
+Route::post('/login', 'App\Http\Controllers\AuthController@loginPost');
+Route::get('/register', 'App\Http\Controllers\AuthController@register');
+Route::post('/register', 'App\Http\Controllers\AuthController@registerPost');
+
+Route::group(['middleware' => 'auth'], function(){
+    // ROLES
+    Route::get('/roles', 'App\Http\Controllers\RoleController@index');
+    Route::post('/roles', 'App\Http\Controllers\RoleController@create');
+    Route::get('/roles/{id}/edit', 'App\Http\Controllers\RoleController@edit');
+    Route::post('/roles/{id}/edit', 'App\Http\Controllers\RoleController@update');
+    Route::get('/roles/{id}/delete', 'App\Http\Controllers\RoleController@delete');
+
+    // AUTH
+    Route::get('/logout', 'App\Http\Controllers\AuthController@logout');
+});

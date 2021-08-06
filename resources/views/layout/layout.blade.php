@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ url('assets/dist/css/adminlte.min.css') }}">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="url('assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')">
 
   <style>
     footer {
@@ -90,6 +92,13 @@
                 </a>
               </li>
             </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="/logout" class="nav-link active">
+              <i class="nav-icon fas fa-power-off"></i>
+              <p>Logout</p>
+            </a>
           </li>
         </ul>
       </nav>
