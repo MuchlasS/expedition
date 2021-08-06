@@ -11,12 +11,12 @@
 @endif
 <!-- ADD ROLES MODAL -->
 <div class="row">
-    <div class="col-6">
+    <div class="col-12">
         <h2>Data Roles</h2>
     </div>
-    <div class="col-6">
+    <div class="col-12">
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rolesModel">
+        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#rolesModel">
             Add Data
         </button>
         <!-- Modal -->
