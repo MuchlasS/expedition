@@ -21,7 +21,8 @@ class RoleController extends Controller
 
     public function edit($id){
         $role = Role::findOrFail($id);
-        return view('roles.edit', ['editData' => $role]);
+        return $role;
+        // return view('roles.index', ['editData' => $role]);
     }
 
     public function update(Request $request, $id){
