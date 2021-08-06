@@ -24,13 +24,17 @@ class AuthController extends Controller
     }
 
     public function registerPost(Request $request){
+        $role_id = $request->role_id !== null ? $request->role_id : 2;
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'role_id' => 2
+            'role_id' => $role_id
         ]);
 
+        if($role_id == 1){
+            return redirect('/user');
+        }
         return redirect('/login');
     }
 
