@@ -38,4 +38,11 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/user/{id}/edit', 'App\Http\Controllers\UserController@edit');
     Route::post('/user/{id}/edit', 'App\Http\Controllers\UserController@update');
     Route::get('/user/{id}/delete', 'App\Http\Controllers\UserController@delete');
+
+    // DELIVERY TYPE
+    Route::get('/delivery-type', 'App\Http\Controllers\DeliveryTypeController@index');
+    Route::post('/delivery-type', 'App\Http\Controllers\DeliveryTypeController@create');
+    Route::get('/delivery-type/{id}/edit', 'App\Http\Controllers\DeliveryTypeController@edit');
+    Route::post('/delivery-type/{id}/edit', 'App\Http\Controllers\DeliveryTypeController@update');
+    Route::get('/delivery-type/{id}/delete', 'App\Http\Controllers\DeliveryTypeController@delete');
 });
