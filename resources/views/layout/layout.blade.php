@@ -123,6 +123,16 @@
             </ul>
           </li>
 
+          <!-- AREA LIST -->
+          <li class="nav-item">
+            <a href="/area" class="nav-link">
+              <i class="nav-icon fas fa-map"></i>
+              <p>
+                Area List
+              </p>
+            </a>
+          </li>
+
           <li class="nav-item">
             <a href="/logout" class="nav-link active">
               <i class="nav-icon fas fa-power-off"></i>

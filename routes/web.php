@@ -58,4 +58,11 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/delivery-area/get-city', 'App\Http\Controllers\DeliveryAreaController@getCities')->name('delivery-area.get-cities');
     Route::post('/delivery-area/get-district', 'App\Http\Controllers\DeliveryAreaController@getDistricts')->name('delivery-area.get-districts');
     Route::post('/delivery-area/get-village', 'App\Http\Controllers\DeliveryAreaController@getVillages')->name('delivery-area.get-villages');
+
+    // AREA
+    Route::get('/area', 'App\Http\Controllers\AreaController@index');
+    Route::post('/area', 'App\Http\Controllers\AreaController@create');
+    Route::get('/area/{id}/edit', 'App\Http\Controllers\AreaController@edit');
+    Route::post('/area/{id}/edit', 'App\Http\Controllers\AreaController@update');
+    Route::get('/area/{id}/delete', 'App\Http\Controllers\AreaController@delete');
 });
