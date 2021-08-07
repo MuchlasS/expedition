@@ -109,6 +109,11 @@
                   <p>Delivery Type List</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="/delivery-fleet" class="nav-link">
+                  <p>Delivery Fleet List</p>
+                </a>
+              </li>
             </ul>
           </li>
 
