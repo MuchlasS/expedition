@@ -52,4 +52,10 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/delivery-fleet/{id}/edit', 'App\Http\Controllers\DeliveryFleetController@edit');
     Route::post('/delivery-fleet/{id}/edit', 'App\Http\Controllers\DeliveryFleetController@update');
     Route::get('/delivery-fleet/{id}/delete', 'App\Http\Controllers\DeliveryFleetController@delete');
+
+    // DELIVERY AREA
+    Route::get('/delivery-area', 'App\Http\Controllers\DeliveryAreaController@index');
+    Route::post('/delivery-area/get-city', 'App\Http\Controllers\DeliveryAreaController@getCities')->name('delivery-area.get-cities');
+    Route::post('/delivery-area/get-district', 'App\Http\Controllers\DeliveryAreaController@getDistricts')->name('delivery-area.get-districts');
+    Route::post('/delivery-area/get-village', 'App\Http\Controllers\DeliveryAreaController@getVillages')->name('delivery-area.get-villages');
 });

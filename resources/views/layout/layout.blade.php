@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kargo Ekspedisi | @yield('title')</title>
@@ -14,7 +15,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ url('assets/dist/css/adminlte.min.css') }}">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="url('assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')">
+  <link rel="stylesheet" href="{{url('assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
 
   <style>
     footer {
@@ -114,6 +115,11 @@
                   <p>Delivery Fleet List</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="/delivery-area" class="nav-link">
+                  <p>Delivery Area List</p>
+                </a>
+              </li>
             </ul>
           </li>
 
@@ -152,9 +158,9 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="{{ url('assets/plugins/jquery/jquery.min.js') }}"></script>
+<script src="{{ url('assets/plugins/jquery/jquery.min.js') }}" type="text/javascript"></script>
 <!-- jQuery UI 1.11.4 -->
-<script src="{{ url('assets/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+<script src="{{ url('assets/plugins/jquery-ui/jquery-ui.min.js') }}" type="text/javascript"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)
@@ -165,5 +171,7 @@
 <script src="{{ url('assets/dist/js/adminlte.js') }}"></script>
 <!-- overlayScrollbars -->
 <script src="{{ url('assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+<!-- AXIOS -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </body>
 </html>
