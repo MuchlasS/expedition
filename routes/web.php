@@ -55,9 +55,15 @@ Route::group(['middleware' => 'auth'], function(){
 
     // DELIVERY AREA
     Route::get('/delivery-area', 'App\Http\Controllers\DeliveryAreaController@index');
-    Route::post('/delivery-area/get-city', 'App\Http\Controllers\DeliveryAreaController@getCities')->name('delivery-area.get-cities');
-    Route::post('/delivery-area/get-district', 'App\Http\Controllers\DeliveryAreaController@getDistricts')->name('delivery-area.get-districts');
-    Route::post('/delivery-area/get-village', 'App\Http\Controllers\DeliveryAreaController@getVillages')->name('delivery-area.get-villages');
+    Route::post('/delivery-area', 'App\Http\Controllers\DeliveryAreaController@create');
+    Route::get('/delivery-area/{id}/edit', 'App\Http\Controllers\DeliveryAreaController@edit');
+    Route::post('/delivery-area/{id}/edit', 'App\Http\Controllers\DeliveryAreaController@update');
+    Route::get('/delivery-area/{id}/delete', 'App\Http\Controllers\DeliveryAreaController@delete');
+    
+    Route::post('/delivery-area/get-province', 'App\Http\Controllers\DeliveryAreaController@getProvinces')->name('get-provinces');
+    Route::post('/delivery-area/get-city', 'App\Http\Controllers\DeliveryAreaController@getCities')->name('get-cities');
+    Route::post('/delivery-area/get-district', 'App\Http\Controllers\DeliveryAreaController@getDistricts')->name('get-districts');
+    Route::post('/delivery-area/get-village', 'App\Http\Controllers\DeliveryAreaController@getVillages')->name('get-villages');
 
     // AREA
     Route::get('/area', 'App\Http\Controllers\AreaController@index');

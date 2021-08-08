@@ -36,14 +36,19 @@
                     <div class="modal-body">
                         <div class="mb-3 form-group">
                             <label for="deliveryAreasName" class="form-label">Delivery Area Name</label>
-                            <input name="name" type="text" class="form-control" id="deliveryAreasName" placeholder="SUMATERA">
+                            <select class="form-control" aria-label="Default select example" name="area_id" id="area">
+                                <option value="">-= Pilih Area =-</option>
+                                @foreach($data['areas'] as $key => $area)
+                                <option value="{{$key}}">{{$area}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="mb-3 form-group">
                             <label for="deliveryAreaProvince" class="form-label">Province</label>
                             <select class="form-control" aria-label="Default select example" name="province_id" id="province">
                                 <option value="">-= Pilih Provinsi =-</option>
-                                @foreach($data as $key => $provinces)
-                                <option value="{{$key}}">{{$provinces}}</option>
+                                @foreach($data['provinces'] as $key => $province)
+                                <option value="{{$key}}">{{$province}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -76,11 +81,41 @@
         </div>
     </div>
 </div>
+<!-- DATA DELIVERY FLEET -->
+<table class="table table-borderless">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Area Name</th>
+            <th scope="col">Province</th>
+            <th scope="col">City</th>
+            <th scope="col">District</th>
+            <th scope="col">Village</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($data['main'] as $area)
+        <tr>
+            <th scope="row">{{ $loop->iteration }}</th>
+            <td>{{ $area->area->name }}</td>
+            <td>{{ $area->province->name }}</td>
+            <td>{{ $area->city->name }}</td>
+            <td>{{ $area->district->name }}</td>
+            <td>{{ $area->village->name }}</td>
+            <td>
+                <a class="badge bg-warning btn" href="/delivery-area/{{ $area->id }}/edit">Edit</a>
+                <a class="badge bg-danger btn" href="/delivery-area/{{ $area->id }}/delete">Delete</a>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
 
 <script>
     $(function () {
         $('#province').on('change', function () {
-            axios.post('{{ route('delivery-area.get-cities') }}', {id: $(this).val()})
+            axios.post('{{ route('get-cities') }}', {id: $(this).val()})
                 .then(function (response) {
                     $('#city').empty();
 
@@ -88,13 +123,15 @@
                         $('#city').append(new Option(name, id))
                     })
                     $('#city').removeAttr('disabled')
+
+                    console.log(response)
                 }).catch(function (error){
                     console.error(error)
                 });
         });
 
         $('#city').on('change', function () {
-            axios.post('{{ route('delivery-area.get-districts') }}', {id: $(this).val()})
+            axios.post('{{ route('get-districts') }}', {id: $(this).val()})
                 .then(function (response) {
                     $('#district').empty();
 
@@ -108,7 +145,7 @@
         });
 
         $('#district').on('change', function () {
-            axios.post('{{ route('delivery-area.get-villages') }}', {id: $(this).val()})
+            axios.post('{{ route('get-villages') }}', {id: $(this).val()})
                 .then(function (response) {
                     $('#village').empty();
 
