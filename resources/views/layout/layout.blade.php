@@ -120,6 +120,11 @@
                   <p>Delivery Area List</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="/delivery-price" class="nav-link">
+                  <p>Delivery Price List</p>
+                </a>
+              </li>
             </ul>
           </li>
 

@@ -14,7 +14,7 @@
 <!-- ADD DELIVERY FLEET MODAL -->
 <div class="row">
     <div class="col-12">
-        <h2>Data Delivery Fleets</h2>
+        <h2>Data Delivery Areas</h2>
     </div>
     <div class="col-12">
         <!-- Button trigger modal -->

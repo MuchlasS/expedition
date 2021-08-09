@@ -71,4 +71,14 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/area/{id}/edit', 'App\Http\Controllers\AreaController@edit');
     Route::post('/area/{id}/edit', 'App\Http\Controllers\AreaController@update');
     Route::get('/area/{id}/delete', 'App\Http\Controllers\AreaController@delete');
+
+    // DELIVERY PRICE
+    Route::get('/delivery-price', 'App\Http\Controllers\DeliveryPriceController@index');
+    Route::post('/delivery-price', 'App\Http\Controllers\DeliveryPriceController@create');
+    Route::get('/delivery-price/{id}/edit', 'App\Http\Controllers\DeliveryPriceController@edit');
+    Route::post('/delivery-price/{id}/edit', 'App\Http\Controllers\DeliveryPriceController@update');
+    Route::get('/delivery-price/{id}/delete', 'App\Http\Controllers\DeliveryPriceController@delete');
+
+    Route::post('/delivery-price/get-area', 'App\Http\Controllers\DeliveryPriceController@getAreas')->name('get-areas');
+    Route::post('/delivery-price/get-fleet', 'App\Http\Controllers\DeliveryPriceController@getFleets')->name('get-fleets');
 });
