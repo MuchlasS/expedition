@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kargo Ekspedisi | @yield('title')</title>
@@ -14,17 +15,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ url('assets/dist/css/adminlte.min.css') }}">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="url('assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')">
-
-  <style>
-    footer {
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        height: 10%;
-        width: 100%;
-    }
-  </style>
+  <link rel="stylesheet" href="{{url('assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -63,15 +54,15 @@
           <img src="{{url('assets/img/default-user-image.jpeg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block text-white-50">{{ Auth::user()->name }}</a>
         </div>
       </div>
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+
+          <!-- USERS -->
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
@@ -94,6 +85,49 @@
             </ul>
           </li>
 
+          <!-- DELIVERY -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-truck"></i>
+              <p>
+                Deliveries Menu
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/delivery-type" class="nav-link">
+                  <p>Delivery Type List</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/delivery-fleet" class="nav-link">
+                  <p>Delivery Fleet List</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/delivery-area" class="nav-link">
+                  <p>Delivery Area List</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/delivery-price" class="nav-link">
+                  <p>Delivery Price List</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- AREA LIST -->
+          <li class="nav-item">
+            <a href="/area" class="nav-link">
+              <i class="nav-icon fas fa-map"></i>
+              <p>
+                Area List
+              </p>
+            </a>
+          </li>
+
           <li class="nav-item">
             <a href="/logout" class="nav-link active">
               <i class="nav-icon fas fa-power-off"></i>
@@ -107,11 +141,12 @@
     <!-- /.sidebar -->
   </aside>
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
+    <section class="content">
+      <div class="container-fluid">
         @yield('body')
-    </div>
-    <!-- /.content-header -->
+      </div>
+    </section>
+  </div>
   <footer class="main-footer">
     <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
     All rights reserved.
@@ -129,9 +164,9 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="{{ url('assets/plugins/jquery/jquery.min.js') }}"></script>
+<script src="{{ url('assets/plugins/jquery/jquery.min.js') }}" type="text/javascript"></script>
 <!-- jQuery UI 1.11.4 -->
-<script src="{{ url('assets/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+<script src="{{ url('assets/plugins/jquery-ui/jquery-ui.min.js') }}" type="text/javascript"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)
@@ -142,5 +177,7 @@
 <script src="{{ url('assets/dist/js/adminlte.js') }}"></script>
 <!-- overlayScrollbars -->
 <script src="{{ url('assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+<!-- AXIOS -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </body>
 </html>
