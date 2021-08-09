@@ -7,16 +7,13 @@
         <h2>Edit Data Delivery Fleets</h2>
     </div>
     <div class="col-12">
-    <form action="/delivery-area/{{$editData['main']->id}}/edit" method="POST">
+    <form action="/delivery-area/{{$editData->id}}/edit" method="POST">
             {{ csrf_field() }}
                 <div class="modal-body">
                     <div class="mb-3 form-group">
                         <label for="deliveryAreasName" class="form-label">Delivery Area Name</label>
                         <select class="form-control" aria-label="Default select example" name="area_id" id="area">
                             <option value="">-= Pilih Area =-</option>
-                            @foreach($editData['areas'] as $key => $area)
-                            <option value="{{$key}}" {{ $key == $editData['main']->area->id ? 'selected' : '' }} >{{$area}}</option>
-                            @endforeach
                         </select>
                     </div>
                     <div class="mb-3 form-group">
@@ -45,7 +42,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a class="btn btn-secondary" href="/delivery-area">Back</a>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
@@ -56,8 +53,19 @@
 </form>
 <script>
     $(function () {
-        var editData = @json($editData['main']);
+        var editData = @json($editData);
         console.log(editData)
+        axios.post('{{ route('get-areas') }}', {})
+            .then(function (response){
+                $('#area').empty();
+                $.each(response.data, function(id, name){
+                    $('#area').append(new Option(name, id));
+                    $(`#area option[value=${editData.area_id}]`).attr('selected', 'selected');
+                })
+            }).catch(function (error){
+                console.error(error);
+            })
+
         axios.post('{{ route('get-provinces') }}', {})
             .then(function (response){
                 $('#province').empty();

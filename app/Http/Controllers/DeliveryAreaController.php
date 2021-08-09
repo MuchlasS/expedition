@@ -3,19 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\DeliveryArea;
-use App\Models\Area;
 use Laravolt\Indonesia\Models\Province;
-use Laravolt\Indonesia\Models\City;
-use Laravolt\Indonesia\Models\District;
-use Laravolt\Indonesia\Models\Village;
 use Illuminate\Http\Request;
 
 class DeliveryAreaController extends Controller
 {
     public function index(){
-        $data['provinces'] = Province::pluck('name', 'id');
-        $data['areas'] = Area::pluck('name', 'id');
-        $data['main'] = DeliveryArea::all();
+        $data = DeliveryArea::all();
         // return $data;
 
         return view('delivery.areas.index', ['data' => $data]);
@@ -28,8 +22,7 @@ class DeliveryAreaController extends Controller
     }
 
     public function edit($id){
-        $data['main'] = DeliveryArea::findOrFail($id);
-        $data['areas'] = Area::pluck('name', 'id');
+        $data = DeliveryArea::findOrFail($id);
         
         return view('delivery.areas.edit', ['editData' => $data]);
     }
@@ -47,29 +40,5 @@ class DeliveryAreaController extends Controller
         $data->delete();
 
         return redirect('/delivery-area')->with('success', 'Delivery Area '.$name.' deleted');
-    }
-
-    public function getProvinces(Request $request){
-        $province = Province::all()->pluck('name', 'id');
-
-        return response()->json($province);
-    }
-
-    public function getCities(Request $request){
-        $city = City::where('province_id', $request->get('id'))->pluck('name', 'id');
-
-        return response()->json($city);
-    }
-
-    public function getDistricts(Request $request){
-        $district = District::where('city_id', $request->get('id'))->pluck('name', 'id');
-
-        return response()->json($district);
-    }
-
-    public function getVillages(Request $request){
-        $village = Village::where('district_id', $request->get('id'))->pluck('name', 'id');
-
-        return response()->json($village);
     }
 }

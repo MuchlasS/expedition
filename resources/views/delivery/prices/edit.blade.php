@@ -62,7 +62,7 @@
 <script>
     $(function(){
         var editData = @json($editData);
-        axios.post('{{ route('get-areas') }}', {})
+        axios.post('{{ route('get-delivery-areas') }}', {})
             .then(function(response){
                 $('#delivery_area').empty();
                 console.log(response.data)

@@ -16,16 +16,6 @@
   <link rel="stylesheet" href="{{ url('assets/dist/css/adminlte.min.css') }}">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{url('assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
-
-  <style>
-    footer {
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        height: 10%;
-        width: 100%;
-    }
-  </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -151,11 +141,12 @@
     <!-- /.sidebar -->
   </aside>
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
+    <section class="content">
+      <div class="container-fluid">
         @yield('body')
-    </div>
-    <!-- /.content-header -->
+      </div>
+    </section>
+  </div>
   <footer class="main-footer">
     <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
     All rights reserved.

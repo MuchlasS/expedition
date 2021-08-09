@@ -6,7 +6,7 @@
 @if(session('success'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
   {{ session('success') }}
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
@@ -38,18 +38,12 @@
                             <label for="deliveryAreasName" class="form-label">Delivery Area Name</label>
                             <select class="form-control" aria-label="Default select example" name="area_id" id="area">
                                 <option value="">-= Pilih Area =-</option>
-                                @foreach($data['areas'] as $key => $area)
-                                <option value="{{$key}}">{{$area}}</option>
-                                @endforeach
                             </select>
                         </div>
                         <div class="mb-3 form-group">
                             <label for="deliveryAreaProvince" class="form-label">Province</label>
                             <select class="form-control" aria-label="Default select example" name="province_id" id="province">
                                 <option value="">-= Pilih Provinsi =-</option>
-                                @foreach($data['provinces'] as $key => $province)
-                                <option value="{{$key}}">{{$province}}</option>
-                                @endforeach
                             </select>
                         </div>
                         <div class="mb-3 form-group">
@@ -95,7 +89,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($data['main'] as $area)
+        @foreach($data as $area)
         <tr>
             <th scope="row">{{ $loop->iteration }}</th>
             <td>{{ $area->area->name }}</td>
@@ -114,6 +108,30 @@
 
 <script>
     $(function () {
+        axios.post('{{ route('get-areas') }}', {})
+            .then(function (response) {
+                $('#area').empty();
+
+                $.each(response.data, function (id, name) {
+                    $('#area').append(new Option(name, id))
+                })
+            }).catch(function (error){
+                console.error(error)
+            });
+
+        axios.post('{{ route('get-provinces') }}', {})
+            .then(function (response) {
+                $('#province').empty();
+
+                $.each(response.data, function (id, name) {
+                    $('#province').append(new Option(name, id))
+                })
+                $('#province').change()
+
+            }).catch(function (error){
+                console.error(error)
+            });
+            
         $('#province').on('change', function () {
             axios.post('{{ route('get-cities') }}', {id: $(this).val()})
                 .then(function (response) {
@@ -123,8 +141,8 @@
                         $('#city').append(new Option(name, id))
                     })
                     $('#city').removeAttr('disabled')
+                    $('#city').change()
 
-                    console.log(response)
                 }).catch(function (error){
                     console.error(error)
                 });
@@ -139,6 +157,7 @@
                         $('#district').append(new Option(name, id))
                     })
                     $('#district').removeAttr('disabled')
+                    $('#district').change()
                 }).catch(function (error){
                     console.error(error)
                 });

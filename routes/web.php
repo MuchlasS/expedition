@@ -17,10 +17,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// AUTH
 Route::get('/login', 'App\Http\Controllers\AuthController@login')->name('login');
 Route::post('/login', 'App\Http\Controllers\AuthController@loginPost');
 Route::get('/register', 'App\Http\Controllers\AuthController@register');
 Route::post('/register', 'App\Http\Controllers\AuthController@registerPost');
+
+// DROPDOWN
+Route::post('/dropdown-parameter/get-area', 'App\Http\Controllers\DropdownParameterController@getAreas')->name('get-areas');
+Route::post('/dropdown-parameter/get-delivery-area', 'App\Http\Controllers\DropdownParameterController@getDeliveryAreas')->name('get-delivery-areas');
+Route::post('/dropdown-parameter/get-fleet', 'App\Http\Controllers\DropdownParameterController@getFleets')->name('get-fleets');
+Route::post('/dropdown-parameter/get-province', 'App\Http\Controllers\DropdownParameterController@getProvinces')->name('get-provinces');
+Route::post('/dropdown-parameter/get-city', 'App\Http\Controllers\DropdownParameterController@getCities')->name('get-cities');
+Route::post('/dropdown-parameter/get-district', 'App\Http\Controllers\DropdownParameterController@getDistricts')->name('get-districts');
+Route::post('/dropdown-parameter/get-village', 'App\Http\Controllers\DropdownParameterController@getVillages')->name('get-villages');
 
 Route::group(['middleware' => 'auth'], function(){
     // AUTH
@@ -60,11 +70,6 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/delivery-area/{id}/edit', 'App\Http\Controllers\DeliveryAreaController@update');
     Route::get('/delivery-area/{id}/delete', 'App\Http\Controllers\DeliveryAreaController@delete');
     
-    Route::post('/delivery-area/get-province', 'App\Http\Controllers\DeliveryAreaController@getProvinces')->name('get-provinces');
-    Route::post('/delivery-area/get-city', 'App\Http\Controllers\DeliveryAreaController@getCities')->name('get-cities');
-    Route::post('/delivery-area/get-district', 'App\Http\Controllers\DeliveryAreaController@getDistricts')->name('get-districts');
-    Route::post('/delivery-area/get-village', 'App\Http\Controllers\DeliveryAreaController@getVillages')->name('get-villages');
-
     // AREA
     Route::get('/area', 'App\Http\Controllers\AreaController@index');
     Route::post('/area', 'App\Http\Controllers\AreaController@create');
@@ -78,7 +83,4 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/delivery-price/{id}/edit', 'App\Http\Controllers\DeliveryPriceController@edit');
     Route::post('/delivery-price/{id}/edit', 'App\Http\Controllers\DeliveryPriceController@update');
     Route::get('/delivery-price/{id}/delete', 'App\Http\Controllers\DeliveryPriceController@delete');
-
-    Route::post('/delivery-price/get-area', 'App\Http\Controllers\DeliveryPriceController@getAreas')->name('get-areas');
-    Route::post('/delivery-price/get-fleet', 'App\Http\Controllers\DeliveryPriceController@getFleets')->name('get-fleets');
 });

@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\DeliveryPrice as Price;
-use App\Models\DeliveryArea as Area;
-use App\Models\DeliveryFleet as Fleet;
 use Illuminate\Http\Request;
 
 class DeliveryPriceController extends Controller
@@ -46,34 +44,5 @@ class DeliveryPriceController extends Controller
         $data->delete();
 
         return redirect('/delivery-price')->with('success', 'Delete '.$name.' successfully');
-    }
-
-    public function getAreas(Request $request){
-        $areas = Area::all();
-        $data = array();
-        foreach($areas as $area){
-            $data[] = array(
-                'id' => $area->id,
-                'area_name' => $area->area->name,
-                'province_name' => $area->province->name,
-                'city_name' => $area->city->name,
-                'district_name' => $area->district->name,
-                'village_name' => $area->village->name
-            );
-        }
-        return response()->json($data);
-    }
-
-    public function getFleets(Request $request){
-        $fleets = Fleet::all();
-        $data = array();
-        foreach($fleets as $fleet){
-            $data[] = array(
-                'id' => $fleet->id,
-                'name' => $fleet->name,
-                'delivery_type_name' => $fleet->deliveryType->name
-            );
-        }
-        return response()->json($data);
     }
 }
